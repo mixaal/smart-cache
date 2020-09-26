@@ -1,15 +1,16 @@
 package net.mikc.storage.core;
 
 import com.google.common.eventbus.EventBus;
+import net.mikc.storage.discovery.IDiscoveryProvider;
 
 import java.util.List;
 
 public class CacheManager implements ICacheManager {
     final ICacheManager cache;
     final EventBus eventBus = new EventBus("defaultCache");
-    public CacheManager(List<String>peers, ICacheManager internalCacheManager) {
+    public CacheManager(IDiscoveryProvider discoveryProvider, ICacheManager internalCacheManager) {
         this.cache = internalCacheManager;
-        eventBus.register(new EventHandler(peers));
+        eventBus.register(new EventHandler(discoveryProvider));
     }
 
     @Override

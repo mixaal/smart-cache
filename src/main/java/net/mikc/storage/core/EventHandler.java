@@ -3,14 +3,15 @@ package net.mikc.storage.core;
 import com.google.common.eventbus.Subscribe;
 import net.mikc.storage.client.CacheInternalApiClient;
 import net.mikc.storage.client.ICacheClient;
+import net.mikc.storage.discovery.IDiscoveryProvider;
 
 import java.util.List;
 
 public class EventHandler {
     private final ICacheClient client ;
 
-    public EventHandler(List<String> peers) {
-        client = new CacheInternalApiClient(peers);
+    public EventHandler(IDiscoveryProvider discoveryProvider) {
+        client = new CacheInternalApiClient(discoveryProvider);
     }
 
     @Subscribe

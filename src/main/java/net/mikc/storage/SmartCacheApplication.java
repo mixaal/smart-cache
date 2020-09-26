@@ -6,6 +6,7 @@ import io.dropwizard.setup.Environment;
 import net.mikc.storage.core.CacheManager;
 import net.mikc.storage.core.ICacheManager;
 import net.mikc.storage.core.InternalCacheManager;
+import net.mikc.storage.discovery.ConfigurationCacheDiscoveryProvider;
 import net.mikc.storage.resources.CacheResource;
 
 public class SmartCacheApplication extends Application<SmartCacheConfiguration> {
@@ -31,7 +32,7 @@ public class SmartCacheApplication extends Application<SmartCacheConfiguration> 
     public void run(final SmartCacheConfiguration configuration,
                     final Environment environment) {
         final ICacheManager internalCacheManager = new InternalCacheManager();
-        final ICacheManager defaultCacheManager = new CacheManager(configuration.getPeers(), internalCacheManager);
+        final ICacheManager defaultCacheManager = new CacheManager(new ConfigurationCacheDiscoveryProvider(configuration), internalCacheManager);
         environment.jersey().register(new CacheResource(defaultCacheManager, internalCacheManager));
     }
 
