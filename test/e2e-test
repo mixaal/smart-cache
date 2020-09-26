@@ -1,0 +1,7 @@
+ curl -kv -X POST -d '{"value": "1st-one"}' -H "Content-Type: application/json"  http://localhost:8080/api/v1/cache/45
+ curl -kv -X GET http://localhost:8080/api/v1/cache/45
+ curl -kv -X GET http://localhost:28000/api/v1/cache/45
+ curl -kv -X POST -d '{"value": "2nd-one"}' -H "Content-Type: application/json"  http://localhost:8080/api/v1/cache/45
+ curl -kv -X GET http://localhost:28000/api/v1/cache/45
+ curl -kv -X POST -d '{"value": "3rd-one"}' -H "Content-Type: application/json"  http://localhost:8080/api/v1/cache/45
+ curl -kv -X GET http://localhost:28000/api/v1/cache/45
