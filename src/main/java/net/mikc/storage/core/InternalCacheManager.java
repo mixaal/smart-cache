@@ -13,15 +13,10 @@ public class InternalCacheManager implements  ICacheManager {
 
     @Override
     public void put(String id, CacheEntry newEntry) {
-        CacheEntry oldEntry = cache.putIfAbsent(id, newEntry);
-        if(oldEntry==null) return;
-        if(oldEntry.timeStamp() < newEntry.timeStamp()) {
-            cache.put(id, newEntry);
-        }
-//        CacheEntry oldEntry;
-//        do {
-//            oldEntry = cache.putIfAbsent(newEntry.id(), newEntry);
-//        } while (oldEntry != null && oldEntry.before(newEntry) && !cache.replace(newEntry.id(), oldEntry, newEntry));
+        CacheEntry oldEntry;
+        do {
+            oldEntry = cache.putIfAbsent(newEntry.id(), newEntry);
+        } while (oldEntry != null && oldEntry.before(newEntry) && !cache.replace(newEntry.id(), oldEntry, newEntry));
     }
 
     @Override
