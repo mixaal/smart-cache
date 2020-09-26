@@ -8,6 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 @Singleton
 @Path("/api/v1")
@@ -48,8 +49,8 @@ public class CacheResource {
     @Path("/cache/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response putItem(@PathParam("id") String id, CacheEntry entry) {
-        Instant now = Instant.now();
-        cacheManager.put(id, new CacheEntry(now.toEpochMilli(), id, entry.value()));
+        long micros = ChronoUnit.MICROS.between(Instant.EPOCH, Instant.now());
+        cacheManager.put(id, new CacheEntry(micros, id, entry.value()));
         return Response.ok().build();
     }
 
