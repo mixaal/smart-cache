@@ -1,0 +1,7 @@
+logging:
+  level: INFO
+  loggers:
+    net.mikc: DEBUG
+
+peers:
+ - http://localhost:28000

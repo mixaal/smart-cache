@@ -1,0 +1,1 @@
+ab  -n 1000 -c 100 -p payload-post -T "application/json" http://localhost:8080/api/v1/cache/43
