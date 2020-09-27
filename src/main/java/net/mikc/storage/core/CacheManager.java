@@ -3,8 +3,6 @@ package net.mikc.storage.core;
 import com.google.common.eventbus.EventBus;
 import net.mikc.storage.discovery.IDiscoveryProvider;
 
-import java.util.List;
-
 public class CacheManager implements ICacheManager {
     final ICacheManager cache;
     final EventBus eventBus = new EventBus("defaultCache");

@@ -8,6 +8,7 @@ import net.mikc.storage.core.ICacheManager;
 import net.mikc.storage.core.InternalCacheManager;
 import net.mikc.storage.discovery.ConfigurationCacheDiscoveryProvider;
 import net.mikc.storage.resources.CacheResource;
+import net.mikc.storage.resources.HealthCheckResource;
 
 public class SmartCacheApplication extends Application<SmartCacheConfiguration> {
 
@@ -34,6 +35,7 @@ public class SmartCacheApplication extends Application<SmartCacheConfiguration> 
         final ICacheManager internalCacheManager = new InternalCacheManager();
         final ICacheManager defaultCacheManager = new CacheManager(new ConfigurationCacheDiscoveryProvider(configuration), internalCacheManager);
         environment.jersey().register(new CacheResource(defaultCacheManager, internalCacheManager));
+        environment.jersey().register(new HealthCheckResource());
     }
 
 }
