@@ -1,5 +1,11 @@
 # SmartCache
 
+## Overview
+
+![Smart cache overview](Cache.png)
+
+## Quick Start
+
 How to start the SmartCache application
 ---
 
